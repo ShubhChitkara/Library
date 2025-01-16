@@ -70,3 +70,7 @@ form {
 input{
   outline-color: rgb(199, 193, 193);
 }
+dialog{
+  top: 25vh;
+  margin-left: 70vb;
+}
