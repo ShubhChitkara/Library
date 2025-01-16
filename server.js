@@ -1,32 +1,50 @@
 const myLibrary = [];
-const dialog = document.querySelector("dialog");
-const addabookbtn = document.querySelector(".addabook");
-addabookbtn.addEventListener("click", () => {
+const addBookButton = document.querySelector('.addabook');
+const dialog = document.querySelector('dialog');
+const submitForm = document.querySelector('form');
+
+
+function Book(title, author, pages, read){
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read
+
+    this.info = function(){
+        let result = '';
+        if(this.read == 'yes'){
+            return result = `${title} by ${author}, ${pages} pages, read it`;
+        }else{
+            return result = `${title} by ${author}, ${pages} pages, not read yet`;
+        }
+    }
+}
+
+//form that opens when you press add a book button
+addBookButton.addEventListener('click',() => {
   dialog.showModal();
 });
-const closeButton = document.querySelector(".closemodalbtn");
-//form submission
-closeButton.addEventListener("click", (event) => {
-    event.preventDefault(); // We don't want to submit this fake form
-    dialog.close(selectEl.value); // Have to send the select box value here.
-  });
-
-//combines the book data into object
-function createBook(booktitle, bookauthor, booklength, bookreadstatus) {
-  const book = {
-    title: booktitle,
-    author: bookauthor,
-    noofpages: booklength,
-    readstatus: bookreadstatus,
-  };
-}
-//form that opens when you press add a book button
-function bookdetails() {
-  //call function createBook in this function and then call function addBookToLibrary
-}
-//adds the book object to array
-function addBookToLibrary(book) {
+//Adds book to library
+function addBookToLibrary(title, author, pages, read){
+  let book = new Book(title, author, pages, read);
   myLibrary.push(book);
 }
-console.log(myLibrary);
-
+//Adding inputted book to library
+submitForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  let title = document.querySelector('#title');
+  let author = document.querySelector('#author');
+  let pages = document.querySelector('#pages');
+  
+  if(document.querySelector("#read").checked){
+      let read = document.querySelector('#read');
+      addBookToLibrary(title.value, author.value, pages.value, read.value);
+      dialog.close();
+      submitForm.reset();
+  }
+  else {
+      let read = document.querySelector('#not-read');
+      addBookToLibrary(title.value, author.value, pages.value, read.value);
+      dialog.close();
+      submitForm.reset();
+  }
