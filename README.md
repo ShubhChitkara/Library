@@ -1,3 +1,5 @@
 # Library
 THINGS TO DO 
-show each object into a grid in the middle
+Remove bugs from mylibrary loop
+add a delete button in card
+add a toggleread button in each card

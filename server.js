@@ -2,6 +2,7 @@ const myLibrary = [];
 const addBookButton = document.querySelector(".addabook");
 const dialog = document.querySelector("dialog");
 const submitForm = document.querySelector("form");
+const griddy = document.querySelector(".griddy");
 
 //Creates the book object
 function Book(title, author, pages, read) {
@@ -47,9 +48,30 @@ function doit() {
     dialog.close();
     submitForm.reset();
   }
+  for (let i = 0; i < myLibrary.length + 1; i++) {
+    let card = document.createElement("div");
+    card.classList.add("card");
+
+    let a = document.createElement("h2");
+    a.textContent = `Title: ${myLibrary[i].title}`;
+
+    let b = document.createElement("h3");
+    b.textContent = `By: ${myLibrary[i].author}`;
+
+    let c = document.createElement("p");
+    c.textContent = `Pages: ${myLibrary[i].pages}`;
+
+    let d = document.createElement("p");
+    d.textContent = `Read? ${myLibrary[i].read}`;
+    card.appendChild(a);
+    card.appendChild(b);
+    card.appendChild(c);
+    card.appendChild(d);
+    griddy.appendChild(card);
+  }
 }
 submitForm.addEventListener("submit", function (e) {
   e.preventDefault();
   doit();
 });
-console.log(myLibrary)
+console.log(myLibrary);
