@@ -2,7 +2,7 @@ const myLibrary = [];
 const addBookButton = document.querySelector(".addabook");
 const dialog = document.querySelector("dialog");
 const submitForm = document.querySelector("form");
-const griddy = document.querySelector(".griddy");
+const middlepart = document.querySelector(".middlepart");
 
 //Creates the book object
 function Book(title, author, pages, read) {
@@ -63,11 +63,16 @@ function doit() {
 
     let d = document.createElement("p");
     d.textContent = `Read? ${myLibrary[i].read}`;
+
+    let delbtn = document.createElement("button");
+    delbtn.textContent = "DELETE";
+
     card.appendChild(a);
     card.appendChild(b);
     card.appendChild(c);
     card.appendChild(d);
-    griddy.appendChild(card);
+    card.appendChild(delbtn);
+    middlepart.appendChild(card);
   }
 }
 submitForm.addEventListener("submit", function (e) {
